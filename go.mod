@@ -1,4 +1,4 @@
-module github.com/whipphotos/appbase
+module github.com/silvercory/appbase
 
 go 1.15
 
