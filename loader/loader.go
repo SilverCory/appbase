@@ -135,6 +135,10 @@ func Run() {
 	}
 }
 
+func Logger() zerolog.Logger {
+	return logger
+}
+
 func Config() *config.Config {
 	return &cfg
 }
