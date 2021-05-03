@@ -1,10 +1,7 @@
 package viewdata
 
 import (
-	"fmt"
 	"time"
-
-	"github.com/whipphotos/image-api/server/key"
 
 	"github.com/gin-gonic/gin"
 )
@@ -85,10 +82,10 @@ func (v ViewData) GetStringDefault(key string, def string) string {
 }
 
 func (v ViewData) HTML(code int, name string) {
-	if user, ok := v.GetContext().Get(key.ContextUser); ok {
-		fmt.Println("Set user: ", user)
-		v.Set("User", user)
-	}
+	//if user, ok := v.GetContext().Get(key.ContextUser); ok {
+	//	fmt.Println("Set user: ", user)
+	//	v.Set("User", user)
+	//}
 	//v.Set("Token", csrf.GetToken(v.GetContext())) TODO
 	v.Set("GeneratedTime", time.Now().Format(time.RFC822))
 	v.GetContext().HTML(code, name, v)
