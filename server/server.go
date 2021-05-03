@@ -6,7 +6,6 @@ import (
 
 	ginzerolog "github.com/dn365/gin-zerolog"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v8"
 	"github.com/rs/zerolog"
 	"github.com/whipphotos/appbase/config"
 	"github.com/whipphotos/appbase/easter_egg"
@@ -18,14 +17,13 @@ type Server struct {
 	logger   zerolog.Logger
 	conf     config.Web
 	launcher Launcher
-	redisDB  *redis.Client
 
 	closers []func() error
 }
 
 // Handler an interface for sections of the site that handle.
 type Handler interface {
-	RegisterHandlers() error
+	RegisterHandlers(*gin.Engine) error
 }
 
 func NewServer(l zerolog.Logger, conf config.Web) (*Server, error) {
@@ -56,6 +54,10 @@ func NewServer(l zerolog.Logger, conf config.Web) (*Server, error) {
 	)
 
 	return ret, nil
+}
+
+func (s *Server) AddHandler(h Handler) error {
+	return h.RegisterHandlers(s.engine)
 }
 
 func (s *Server) Start(listenAddr string, tls bool) error {
