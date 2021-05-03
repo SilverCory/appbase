@@ -1,0 +1,6 @@
+.idea
+secret.yaml
+!*-sealed-secret.yaml
+secret.yml
+!*-sealed-secret.yml
+.env
