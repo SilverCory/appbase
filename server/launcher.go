@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/whipphotos/appbase/config"
+	"github.com/silvercory/appbase/config"
 
 	"github.com/gin-gonic/gin"
 

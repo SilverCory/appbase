@@ -2,8 +2,10 @@ package migrations
 
 import (
 	"fmt"
+
+	"github.com/silvercory/appbase/config"
+
 	"github.com/rs/zerolog"
-	"github.com/whipphotos/appbase/config"
 
 	_ "github.com/go-sql-driver/mysql"
 

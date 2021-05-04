@@ -8,14 +8,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/whipphotos/appbase/server"
+	"github.com/silvercory/appbase/config"
+	"github.com/silvercory/appbase/migrations"
+	"github.com/silvercory/appbase/server"
 
 	"github.com/go-redis/redis/v8"
 
-	"github.com/whipphotos/appbase/migrations"
-
 	"github.com/rs/zerolog"
-	"github.com/whipphotos/appbase/config"
 )
 
 // Loader does stuff

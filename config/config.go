@@ -10,15 +10,15 @@ import (
 
 // Config the main configuration.
 type Config struct {
-	MySQL MySQL
-	Redis Redis
-	Web   Web
-	OwO   OwO
+	MySQL   MySQL
+	Redis   Redis
+	Web     Web
+	OwO     OwO
 	Customs map[string]Parser
 }
 
 // Parser is an interface for custom configurations.
-type Parser interface{
+type Parser interface {
 	// ParseEnv should call and return `return caarlos0.env.Parse(&this)`.
 	ParseEnv() error
 }
@@ -35,7 +35,7 @@ type Redis struct {
 // MySQL configures MySQL.
 type MySQL struct {
 	DatabaseType string `env:"MYSQL_DATABASE_TYPE" envDefault:"mysql"`
-	URI          string `env:"MYSQL_URI" envDefault:"username:password@tcp(127.0.0.1:3306)/selfbot?charset=utf8&parseTime=True&loc=Local"`
+	URI          string `env:"MYSQL_URI" envDefault:"username:password@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local"`
 	Enabled      bool   `env:"MYSQL_ENABLED" envDefault:"false"`
 }
 
@@ -48,7 +48,7 @@ type Web struct {
 	SentryDSN        string   `env:"WEB_SENTRY_DSN"`
 	CSRFSecret       string   `env:"WEB_CSRF_SECRET"`
 	CSPReportWebHook string   `env:"WEB_CSP_REPORT_WEBHOOK"`
-	DomainNames      []string `env:"WEB_DOMAIN_NAMES" envSeparator:":" envDefault:"whip.photos:whip.photography "`
+	DomainNames      []string `env:"WEB_DOMAIN_NAMES" envSeparator:":" envDefault:"example.com:example.net"`
 }
 
 type OwO struct {

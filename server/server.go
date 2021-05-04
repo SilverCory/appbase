@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"html/template"
 
+	"github.com/silvercory/appbase/config"
+	"github.com/silvercory/appbase/easter_egg"
+
 	ginzerolog "github.com/dn365/gin-zerolog"
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
-	"github.com/whipphotos/appbase/config"
-	"github.com/whipphotos/appbase/easter_egg"
 )
 
 type Server struct {
