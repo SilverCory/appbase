@@ -108,7 +108,7 @@ func Run() {
 	}()
 
 	for k, v := range loaders {
-		if err := v.Setup(); err != nil {
+		if err := v.Run(); err != nil {
 			logger.Error().Err(err).Msgf("Starting up loader %q", k)
 			os.Exit(1)
 			return
