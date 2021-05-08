@@ -69,6 +69,11 @@ func Setup() {
 			os.Exit(1)
 			return
 		}
+		if err := sqlDB.Ping(); err != nil {
+			logger.Error().Err(err).Msg("Pinging sql DB.")
+			os.Exit(1)
+			return
+		}
 	}
 
 	if cfg.Redis.Enabled {
