@@ -63,7 +63,7 @@ func Setup() {
 			return
 		}
 
-		_, err = sql.Open(cfg.MySQL.DatabaseType, cfg.MySQL.URI)
+		sqlDB, err = sql.Open(cfg.MySQL.DatabaseType, cfg.MySQL.URI)
 		if err != nil {
 			logger.Error().Err(err).Msg("Opening sql connection.")
 			os.Exit(1)
