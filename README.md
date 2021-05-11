@@ -1,7 +1,7 @@
 # AppBase
 ---
 
-The base library for WhipPhotography...
+The base library for life...
 
 ### Importing/Usage
 1. `$ git config --global url."git@github.com:".insteadOf https://github.com/`
