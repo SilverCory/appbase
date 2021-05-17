@@ -30,7 +30,7 @@ type Loader interface {
 }
 
 var (
-	logger  = zerolog.New(os.Stderr).With().Timestamp().Logger()
+	logger  = zerolog.New(os.Stderr).With().Timestamp().Caller().Logger()
 	loaders = make(map[string]Loader)
 
 	err error
