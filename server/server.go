@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"html/template"
 
+	ginzerolog "github.com/dn365/gin-zerolog"
+
 	"github.com/silvercory/appbase/config"
 	"github.com/silvercory/appbase/easter_egg"
 
-	ginzerolog "github.com/dn365/gin-zerolog"
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
 )
@@ -51,6 +52,9 @@ func NewServer(l zerolog.Logger, conf config.Web) (*Server, error) {
 	ret.engine.Use(
 		gin.Recovery(),
 		ginzerolog.Logger("gin"),
+		func(ctx *gin.Context) {
+			ctx.Request.WithContext(l.WithContext(ctx.Request.Context()))
+		},
 		//static.Serve("/", static.LocalFile(ret.conf.StaticFilePath, false)),
 	)
 
