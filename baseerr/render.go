@@ -1,4 +1,4 @@
-package apperr
+package baseerr
 
 import (
 	"errors"
@@ -10,7 +10,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-func HandleError(ctx gin.Context, err error) {
+func HandleError(ctx *gin.Context, err error) {
 	if err == nil {
 		return
 	}
@@ -25,7 +25,7 @@ func HandleError(ctx gin.Context, err error) {
 	render(ctx, appErr)
 }
 
-func render(ctx gin.Context, appErr AppError) {
+func render(ctx *gin.Context, appErr AppError) {
 
 	// Status
 	var statusCode = appErr.StatusCode
@@ -39,7 +39,7 @@ func render(ctx gin.Context, appErr AppError) {
 	ctx.JSON(statusCode, cloneAppErr(appErr, false))
 }
 
-func LogErr(ctx gin.Context, err error, msg string) {
+func LogErr(ctx *gin.Context, err error, msg string) {
 	if err == nil {
 		return
 	}
