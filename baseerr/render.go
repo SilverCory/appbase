@@ -19,7 +19,7 @@ func HandleError(ctx *gin.Context, err error) {
 	if !errors.As(err, &appErr) {
 		appErr = New(http.StatusInternalServerError, err)
 	} else {
-		appErr = appErr.WithData("_originalError", appErr)
+		appErr = appErr.WithData("_originalError", err)
 	}
 
 	render(ctx, appErr)
