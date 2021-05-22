@@ -17,16 +17,14 @@ func HandleError(ctx *gin.Context, err error) {
 
 	var appErr AppError
 	if !errors.As(err, &appErr) {
-		appErr = New(http.StatusInternalServerError, err)
-	} else {
-		appErr = appErr.WithData("_originalError", err)
+		appErr = New(http.StatusInternalServerError, err).
+			WithData("_wrappedError", err.Error())
 	}
 
 	render(ctx, appErr)
 }
 
 func render(ctx *gin.Context, appErr AppError) {
-
 	// Status
 	var statusCode = appErr.StatusCode
 	if statusCode <= 0 {

@@ -1,6 +1,9 @@
 package baseerr
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 var (
 	_ error = new(AppError)
@@ -8,7 +11,7 @@ var (
 
 type AppError struct {
 	StatusCode int                    `json:"-"`
-	Err        error                  `json:"err"`
+	Err        error                  `json:"error"`
 	Data       map[string]interface{} `json:"data"`
 }
 
@@ -31,4 +34,14 @@ func (a AppError) Unwrap() error {
 func (a AppError) WithData(key string, value interface{}) AppError {
 	a.Data[key] = value
 	return a
+}
+
+func (a AppError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(struct {
+		Err  string                 `json:"error"`
+		Data map[string]interface{} `json:"data"`
+	}{
+		Err:  a.Err.Error(),
+		Data: a.Data,
+	})
 }
